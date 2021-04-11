@@ -51,7 +51,6 @@
 
 // createPlayer();
 
-
 // 2
 // function createPlayer(player, name1, hp) {
 //   const player1 = document.createElement('div');
@@ -89,61 +88,58 @@
 // arenas.appendChild(player1);
 // arenas.appendChild(player2);
 
-
-
 // 3
 const scorpion = {
-  name: 'Scorpion',
-  hp: 90,
-  img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
-  weapon: ['knife', 'mk16'],
-  attack: function () {
-    console.log(this.name + 'Fight...');
-  }
+    name: 'Scorpion',
+    hp: 90,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
+    weapon: ['knife', 'mk16'],
+    attack: function () {
+        console.log(this.name + 'Fight...');
+    },
 };
 
 const subzero = {
-  name: 'Subzero',
-  hp: 70,
-  img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
-  weapon: ['sword', 'ak47'],
-  attack: function () {
-    console.log(this.name + 'Fight...');
-  }
+    name: 'Subzero',
+    hp: 70,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
+    weapon: ['sword', 'ak47'],
+    attack: function () {
+        console.log(this.name + 'Fight...');
+    },
 };
 
+function createPlayer(player, $name) {
+    const arenas = document.querySelector('.arenas');
 
-function createPlayer(player, name1) {
-  const arenas = document.querySelector('.arenas');
+    const $player = document.createElement('div');
+    $player.classList.add(player);
+    const root = document.querySelector('.root');
+    root.appendChild($player);
 
-  const player1 = document.createElement('div');
-  player1.classList.add(player);
-  const root = document.querySelector('.root');
-  root.appendChild(player1);
+    const progressbar = document.createElement('div');
+    progressbar.classList.add('progressbar');
+    $player.appendChild(progressbar);
 
-  const progressbar = document.createElement('div');
-  progressbar.classList.add('progressbar');
-  player1.appendChild(progressbar);
+    const character = document.createElement('div');
+    character.classList.add('character');
+    $player.appendChild(character);
 
-  const character = document.createElement('div');
-  character.classList.add('character');
-  player1.appendChild(character);
+    const life = document.createElement('div');
+    life.classList.add('life');
+    life.style.width = `${$name.hp}%`;
+    progressbar.appendChild(life);
 
-  const life = document.createElement('div');
-  life.classList.add('life');
-  life.style.width = `${name1.hp}%`;
-  progressbar.appendChild(life);
+    const name = document.createElement('div');
+    name.classList.add('name');
+    name.innerText = $name.name;
+    progressbar.appendChild(name);
 
-  const name = document.createElement('div');
-  name.classList.add('name');
-  name.innerText = name1.name;
-  progressbar.appendChild(name);
+    const img = document.createElement('img');
+    img.src = `${$name.img}`;
+    character.appendChild(img);
 
-  const img = document.createElement('img');
-  img.src = `${name1.img}`;
-  character.appendChild(img);
-
-  arenas.appendChild(player1);
+    arenas.appendChild($player);
 }
 
 createPlayer('player1', scorpion);
